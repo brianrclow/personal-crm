@@ -1,0 +1,25 @@
+<ActionBar title="Personal CRM">
+  <ActionItem
+    text="Add"
+    (tap)="onAdd()"
+    ios.position="right"
+    android.systemIcon="ic_menu_add"
+  ></ActionItem>
+</ActionBar>
+
+<GridLayout>
+  <ListView [items]="users" separatorColor="transparent">
+    <ng-template let-item="item">
+      <StackLayout
+        [nsRouterLink]="['/user', item.id]"
+        class="p-4 mx-4 my-2 bg-primary-500 rounded-lg shadow-md"
+      >
+        <Label
+          [text]="item.name"
+          class="text-lg font-semibold mb-2 text-white"
+        ></Label>
+        <Label [text]="item.email" class="text-sm text-white"></Label>
+      </StackLayout>
+    </ng-template>
+  </ListView>
+</GridLayout>
