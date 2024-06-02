@@ -1,0 +1,109 @@
+<!-- <h1 mat-dialog-title>{{ data.user.name }}</h1>
+<div mat-dialog-content>
+  <p>{{ data.mode }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button>Close</button>
+</div> -->
+
+<div
+  class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75"
+>
+  <div class="bg-white rounded-lg shadow-lg w-full max-w-lg">
+    <div class="flex justify-between items-center p-4 border-b border-gray-200">
+      <h2 class="text-xl font-bold">
+        <span *ngIf="data.mode === 'add'">Add New Connection</span>
+        <span *ngIf="data.mode === 'edit'">Edit {{ user.name }}</span>
+      </h2>
+
+      <button (click)="onCancel()" class="text-gray-500 hover:text-gray-700">
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+    </div>
+    <div class="p-4">
+      <div class="mb-4">
+        <label for="name" class="block text-sm font-medium text-gray-700"
+          >Name</label
+        >
+        <input
+          id="name"
+          type="text"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700"
+          >Email</label
+        >
+        <input
+          id="email"
+          type="email"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="jobTitle" class="block text-sm font-medium text-gray-700"
+          >Job Title</label
+        >
+        <input
+          id="jobTitle"
+          type="text"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="phone" class="block text-sm font-medium text-gray-700"
+          >Phone</label
+        >
+        <input
+          id="phone"
+          type="text"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="imageUrl" class="block text-sm font-medium text-gray-700"
+          >Image URL</label
+        >
+        <input
+          id="imageUrl"
+          type="text"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+        />
+      </div>
+    </div>
+    <div
+      *ngIf="data.mode === 'edit'"
+      class="flex justify-start p-4 border-t border-gray-200"
+    >
+      <button
+        (click)="onDelete(user.id)"
+        class="bg-primary-500 text-white px-4 py-2 rounded-md hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500"
+      >
+        Delete
+      </button>
+    </div>
+
+    <div class="flex justify-end p-4 border-t border-gray-200">
+      <button
+        (click)="onSave()"
+        class="bg-primary-500 text-white px-4 py-2 rounded-md hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>

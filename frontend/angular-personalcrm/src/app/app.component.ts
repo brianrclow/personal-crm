@@ -1,22 +1,18 @@
-import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from './modal/modal.component';
 import { User } from './user.interface';
 import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, CommonModule],
-  providers: [HttpClient, UserService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
   public users!: User[];
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -31,6 +27,22 @@ export class AppComponent implements OnInit {
       error: (error) => {
         console.error('Error:', error);
       },
+    });
+  }
+
+  /**
+   *
+   * @param user 
+   * @param mode add, edit, delete
+   */
+  openDialog(user: User, mode: string) {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '500px',
+      data: { user: user, mode: mode },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
     });
   }
 
